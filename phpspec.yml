@@ -1,0 +1,18 @@
+extensions:
+    - PhpSpec\Extension\CodeCoverageExtension
+
+suites:
+  types:
+    namespace: Madkom\Chimera
+    psr4_prefix: Madkom\Chimera
+    spec_path: %paths.config%/tests
+
+knp.welldone.exclusion:
+    - "*Controller"
+    - "*Test"
+
+code_coverage:
+    output: tests/coverage/phpspec.cov
+    format: php
+
+formatter.name: pretty

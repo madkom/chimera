@@ -1,0 +1,56 @@
+Madkom\Chimera\Definition {#2
+  #title: "Sample non-existent API"
+  #description: ""
+  #version: "1.0"
+  #documentation: Madkom\Chimera\Collection\TypedCollection {#4
+    #type: "Madkom\Chimera\ValueObject\Documentation"
+    #elements: array:1 [
+      0 => Madkom\Chimera\ValueObject\Documentation {#21
+        -title: "Usage"
+        -content: """
+          # Usage\n
+          \n
+          Sample text
+          """
+      }
+    ]
+  }
+  #license: Madkom\Chimera\ValueObject\License {#6
+    -name: "MIT"
+    -url: Madkom\Chimera\ValueObject\Uri {#7
+      -value: "https://opensource.org/licenses/MIT"
+      -scheme: null
+    }
+  }
+  #contact: Madkom\Chimera\ValueObject\Contact {#22
+    -name: "Michał Brzuchalski"
+    -url: Madkom\Chimera\ValueObject\Uri {#23
+      -value: "//brzuchalski.com/"
+      -scheme: null
+    }
+    -email: Madkom\Chimera\ValueObject\Email {#34
+      -value: "michal@brzuchalski.com"
+    }
+  }
+  #host: "localhost:8080"
+  #schemes: Madkom\Chimera\Collection\DistinctCollection {#3
+    -mehtod: "getValue"
+    #type: "Madkom\Chimera\ValueObject\UriScheme"
+    #elements: array:2 [
+      0 => Madkom\Chimera\ValueObject\UriScheme {#19
+        -value: "http"
+      }
+      1 => Madkom\Chimera\ValueObject\UriScheme {#20
+        -value: "https"
+      }
+    ]
+  }
+  #basePath: Madkom\Chimera\ValueObject\UriTemplate {#18
+    -template: "/api/{version}/"
+  }
+  #resources: Madkom\Chimera\Collection\DistinctCollection {#5
+    -mehtod: "getUriTemplate"
+    #type: "Madkom\Chimera\Resource"
+    #elements: []
+  }
+}
