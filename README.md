@@ -1,7 +1,7 @@
 REST API Definition Modeling Library
 ====================================
 
-This is main pakcge of Chimera library which is to help Parse REST API definitions
+This is main package of Chimera library which is to help Parse REST API definitions
 from main formats such as RAML, Swagger and also API Blueprint and reuse it in
 Mock Service or Generators for creating: Documentations, API clients or 
 Application modules (also Bundles).

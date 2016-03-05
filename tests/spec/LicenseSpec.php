@@ -3,7 +3,7 @@
 namespace spec\Madkom\Chimera;
 
 use Madkom\Chimera\License;
-use Madkom\Chimera\Uri;
+use Madkom\Uri\Uri;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
@@ -15,9 +15,9 @@ use Prophecy\Argument;
  */
 class LicenseSpec extends ObjectBehavior
 {
-    function let(Uri $url)
+    function let(Uri $uri)
     {
-        $this->beConstructedWith('License name', $url);
+        $this->beConstructedWith('License name', $uri);
     }
 
     function it_is_initializable()
@@ -25,12 +25,11 @@ class LicenseSpec extends ObjectBehavior
         $this->shouldHaveType(License::class);
     }
 
-    function it_can_retrieve_name_and_url()
+    function it_can_retrieve_name_and_url(Uri $uri)
     {
         $name = 'License name';
-        $url = new Uri('http://license/url');
-        $this->beConstructedWith($name, $url);
+        $this->beConstructedWith($name, $uri);
         $this->getName()->shouldReturn($name);
-        $this->getUrl()->shouldReturn($url);
+        $this->getUrl()->shouldReturn($uri);
     }
 }

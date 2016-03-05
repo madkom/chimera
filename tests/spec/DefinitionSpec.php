@@ -4,10 +4,10 @@ namespace spec\Madkom\Chimera;
 
 use Madkom\Chimera\Definition;
 use Madkom\Chimera\License;
-use Madkom\Chimera\Uri\Hostname;
-use Madkom\Chimera\Uri\Scheme;
-use Madkom\Chimera\Uri\Template;
-use Madkom\Chimera\Uri;
+use Madkom\Uri\Component\Authority\Host\Name;
+use Madkom\Uri\Scheme\Scheme;
+use Madkom\Uri\Uri;
+use Madkom\Uri\UriTemplate;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Traversable;
@@ -20,12 +20,17 @@ use Traversable;
  */
 class DefinitionSpec extends ObjectBehavior
 {
+    function let(Scheme $httpScheme, License $license)
+    {
+        $httpScheme->toString()->willReturn('http');
+    }
+
     function it_is_initializable()
     {
         $this->shouldHaveType(Definition::class);
     }
 
-    function it_can_set_information_properties()
+    function it_can_set_information_properties(Scheme $httpScheme, License $license)
     {
         $title = 'API title';
         $this->setTitle($title);
@@ -39,25 +44,21 @@ class DefinitionSpec extends ObjectBehavior
         $this->setVersion($version);
         $this->getVersion()->shouldReturn($version);
 
-        $host = new Hostname('host');
-        $this->setAddress($host);
-        $this->getAddress()->shouldReturn($host);
+        $host = new Name('host');
+        $this->setHost($host);
+        $this->getHost()->shouldReturn($host);
 
         $this->setPort(80);
         $this->getPort()->shouldReturn(80);
 
-        $schemes = ['http', 'https', 'ws', 'wss'];
-        foreach ($schemes as $scheme) {
-            $this->addScheme(new Scheme($scheme));
-        }
+        $this->addScheme($httpScheme);
         $this->getSchemes()->shouldReturnAnInstanceOf(Traversable::class);
 
-        $basePath = new Template('/api/{version}');
+        $basePath = new UriTemplate('/api/{version}');
         $this->setBasePath($basePath);
         $this->getBasePath()->shouldReturn($basePath);
 
-        $licence = new License('MIT', new Uri('https://opensource.org/licenses/MIT'));
-        $this->setLicense($licence);
-        $this->getLicense()->shouldReturn($licence);
+        $this->setLicense($license);
+        $this->getLicense()->shouldReturn($license);
     }
 }

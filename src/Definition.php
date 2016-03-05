@@ -7,10 +7,12 @@
  */
 namespace Madkom\Chimera;
 
-use Madkom\Chimera\Uri\Address;
-use Madkom\Chimera\Uri\Scheme;
-use Madkom\Chimera\Uri\Template;
 use IteratorIterator;
+use Madkom\Collection\CustomDistinctCollection;
+use Madkom\Collection\CustomTypedCollection;
+use Madkom\Uri\Component\Authority\Host;
+use Madkom\Uri\Scheme\Scheme;
+use Madkom\Uri\UriTemplate;
 
 /**
  * Class Definition
@@ -36,23 +38,23 @@ class Definition
      */
     protected $license;
     /**
-     * @var Address Name or IP of host serving the API
+     * @var Host Name or IP of host serving the API
      */
-    protected $address;
+    protected $host;
     /**
      * @var int Port number of host serving the API
      */
     protected $port = 80;
     /**
-     * @var UriSchemes|Scheme[] The transfer protocol of the API: "http", "https", "ws", "wss"
+     * @var CustomDistinctCollection|Scheme[] The transfer protocol of the API: "http", "https", "ws", "wss"
      */
     protected $schemes;
     /**
-     * @var Template A RFC 6570 URI Template that's to be used as the base of all the resources' URIs
+     * @var UriTemplate A RFC 6570 URI Template that's to be used as the base of all the resources' URIs
      */
     protected $basePath;
     /**
-     * @var Resources|Resource[] The API resources
+     * @var CustomDistinctCollection|Resource[] The API resources
      */
     protected $resources;
     /**
@@ -60,25 +62,97 @@ class Definition
      */
     protected $contact;
     /**
-     * @var Documentations|Documentation[] Additional overall documentation for the API
+     * @var CustomTypedCollection|Documentation[] Additional overall documentation for the API
      */
-    protected $documentation = [];
+    protected $documentation;
+    /**
+     * @var CustomDistinctCollection|Entity[]
+     */
+    protected $entities;
 
     /**
      * Definition constructor.
      */
     final public function __construct()
     {
-        $this->schemes = new UriSchemes();
-        $this->resources = new Resources();
-        $this->documentation = new Documentations();
+        $this->schemes = new class() extends CustomDistinctCollection
+        {
+            /**
+             * Retrieves distinction method
+             * @return string
+             */
+            protected function getMethod() : string
+            {
+                return 'toString';
+            }
+
+            /**
+             * Retrieves collection type
+             * @return string
+             */
+            protected function getType() : string
+            {
+                return Scheme::class;
+            }
+        };
+        $this->resources = new class() extends CustomDistinctCollection
+        {
+            /**
+             * Retrieves distinction method
+             * @return string
+             */
+            protected function getMethod() : string
+            {
+                return 'getUriTemplate';
+            }
+
+            /**
+             * Retrieves collection type
+             * @return string
+             */
+            protected function getType() : string
+            {
+                return Resource::class;
+            }
+        };
+        $this->documentation = new class() extends CustomTypedCollection
+        {
+            /**
+             * Retrieves collection type
+             * @return string
+             */
+            protected function getType() : string
+            {
+                return Documentation::class;
+            }
+        };
+        $this->entities = new class extends CustomDistinctCollection
+        {
+            /**
+             * Retrieve type class
+             * @return string
+             */
+            public function getType() : string
+            {
+                return Entity::class;
+            }
+
+            /**
+             * Retrieve type distinction method
+             * @return string
+             */
+            public function getMethod() : string
+            {
+                return 'getName';
+            }
+        };
     }
 
     /**
      * Retrieve short API name
      * @return string
      */
-    public function getTitle()
+    public function getTitle() : string
     {
         return $this->title;
     }
@@ -96,7 +170,7 @@ class Definition
      * Retrieve longer human-friendly description of the API
      * @return string
      */
-    public function getDescription()
+    public function getDescription() : string
     {
         return $this->description;
     }
@@ -114,7 +188,7 @@ class Definition
      * Retrieve the version of the application API
      * @return string
      */
-    public function getVersion()
+    public function getVersion() : string
     {
         return $this->version;
     }
@@ -130,27 +204,27 @@ class Definition
 
     /**
      * Retrieves name or IP of host serving the API. May contain port number in format: [host]:[port]
-     * @return Address
+     * @return Host
      */
-    public function getAddress() : Address
+    public function getHost() : Host
     {
-        return $this->address;
+        return $this->host;
     }
 
     /**
      * Sets name or IP of host serving the API. May contain port number in format: [host]:[port]
-     * @param Address $address
+     * @param Host $host
      */
-    public function setAddress(Address $address)
+    public function setHost(Host $host)
     {
-        $this->address = $address;
+        $this->host = $host;
     }
 
     /**
      * Retrieve port number
      * @return int
      */
-    public function getPort()
+    public function getPort() : int
     {
         return $this->port;
     }
@@ -166,9 +240,9 @@ class Definition
 
     /**
      * Retrieve transfer protocol schemes
-     * @return Scheme[]
+     * @return IteratorIterator|Scheme[]
      */
-    public function getSchemes()
+    public function getSchemes() : IteratorIterator
     {
         return new IteratorIterator($this->schemes);
     }
@@ -203,27 +277,27 @@ class Definition
 
     /**
      * Retrieve URI Template based on RFC 6570 that's to be used as the base of all the resources' URIs
-     * @return Template
+     * @return UriTemplate
      */
-    public function getBasePath()
+    public function getBasePath() : UriTemplate
     {
         return $this->basePath;
     }
 
     /**
      * Sets URI Template based on RFC 6570 that's to be used as the base of all the resources' URIs
-     * @param Template $basePath
+     * @param UriTemplate $basePath
      */
-    public function setBasePath(Template $basePath)
+    public function setBasePath(UriTemplate $basePath)
     {
         $this->basePath = $basePath;
     }
 
     /**
      * Retrieve additional documentations
-     * @return Documentation[]
+     * @return IteratorIterator|Documentation[]
      */
-    public function getDocumentation()
+    public function getDocumentation() : IteratorIterator
     {
         return new IteratorIterator($this->documentation);
     }
@@ -282,9 +356,9 @@ class Definition
 
     /**
      * Retrieves resources
-     * @return Resource[]
+     * @return IteratorIterator|Resource[]
      */
-    public function getResources()
+    public function getResources() : IteratorIterator
     {
         return new IteratorIterator($this->resources);
     }
@@ -315,5 +389,34 @@ class Definition
     public function hasResource(Resource $resource) : bool
     {
         return $this->resources->contains($resource);
+    }
+
+    /**
+     * Get entities
+     * @return IteratorIterator
+     */
+    public function getEntities() : IteratorIterator
+    {
+        return new IteratorIterator($this->entities);
+    }
+
+    /**
+     * Adds type to collection
+     * @param Entity $type
+     * @return bool
+     */
+    public function addType(Entity $type) : bool
+    {
+        return $this->entities->add($type);
+    }
+
+    /**
+     * Remove type from collection
+     * @param Entity $type
+     * @return bool
+     */
+    public function removeType(Entity $type) : bool
+    {
+        return $this->entities->remove($type);
     }
 }

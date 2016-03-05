@@ -7,6 +7,8 @@
  */
 namespace Madkom\Chimera;
 
+use Madkom\Uri\Uri;
+
 /**
  * Class License
  * @package Madkom\Chimera
@@ -31,7 +33,7 @@ class License
     public function __construct(string $name, Uri $url = null)
     {
         $this->name = $name;
-        $this->url = $url ?? new NullUri();
+        $this->url = $url;
     }
 
     /**

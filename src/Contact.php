@@ -7,6 +7,8 @@
  */
 namespace Madkom\Chimera;
 
+use Madkom\Uri\Uri;
+
 /**
  * Class Contact
  * @package Madkom\Chimera
@@ -36,8 +38,8 @@ class Contact
     public function __construct(string $name, Uri $url = null, Email $email = null)
     {
         $this->name = $name;
-        $this->url = $url ?? new NullUri();
-        $this->email = $email ?? new NullEmail();
+        $this->url = $url;
+        $this->email = $email;
     }
 
     /**

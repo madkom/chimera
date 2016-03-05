@@ -4,7 +4,7 @@ namespace spec\Madkom\Chimera;
 
 use Madkom\Chimera\Contact;
 use Madkom\Chimera\Email;
-use Madkom\Chimera\Uri;
+use Madkom\Uri\UriFactory;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
@@ -29,7 +29,8 @@ class ContactSpec extends ObjectBehavior
     function it_can_retrieve_name_url_and_email()
     {
         $name = 'Contact name';
-        $url = new Uri('http://contact/url');
+        $uriFactory = new UriFactory();
+        $url = $uriFactory->createUri('http://contact/url');
         $email = new Email('contact@email.nonexist');
         $this->beConstructedWith($name, $url, $email);
         $this->getName()->shouldReturn($name);
