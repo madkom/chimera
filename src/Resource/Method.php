@@ -41,6 +41,7 @@ class Method
     public function __construct(string $name)
     {
         $this->name = strtoupper($name);
+        // @codingStandardsIgnoreStart
         $this->headers = new class extends CustomDistinctCollection
         {
             /**
@@ -61,6 +62,7 @@ class Method
                 return 'getName';
             }
         };
+        // @codingStandardsIgnoreEnd
     }
 
     /**

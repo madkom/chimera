@@ -3,10 +3,10 @@
 namespace spec\Madkom\Chimera;
 
 use Madkom\Chimera\Definition;
+use Madkom\Chimera\Entity;
 use Madkom\Chimera\License;
 use Madkom\Uri\Component\Authority\Host\Name;
 use Madkom\Uri\Scheme\Scheme;
-use Madkom\Uri\Uri;
 use Madkom\Uri\UriTemplate;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
@@ -20,9 +20,11 @@ use Traversable;
  */
 class DefinitionSpec extends ObjectBehavior
 {
-    function let(Scheme $httpScheme, License $license)
+    function let(Scheme $httpScheme, License $license, Entity $entity)
     {
         $httpScheme->toString()->willReturn('http');
+        $entity->getType()->willReturn(Entity::class);
+        $entity->getName()->willReturn(Argument::any());
     }
 
     function it_is_initializable()
@@ -30,7 +32,7 @@ class DefinitionSpec extends ObjectBehavior
         $this->shouldHaveType(Definition::class);
     }
 
-    function it_can_set_information_properties(Scheme $httpScheme, License $license)
+    function it_can_set_information_properties(Scheme $httpScheme, License $license, Entity $entity)
     {
         $title = 'API title';
         $this->setTitle($title);
@@ -60,5 +62,8 @@ class DefinitionSpec extends ObjectBehavior
 
         $this->setLicense($license);
         $this->getLicense()->shouldReturn($license);
+
+        $this->addEntity($entity);
+        $this->getEntities()->shouldReturnAnInstanceOf(Traversable::class);
     }
 }

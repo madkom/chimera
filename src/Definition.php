@@ -22,51 +22,51 @@ use Madkom\Uri\UriTemplate;
 class Definition
 {
     /**
-     * @var string Short API name
+     * @var string Holds short API name
      */
     protected $title = '';
     /**
-     * @var string A longer human-friendly description of the API
+     * @var string Holds longer human-friendly description of the API
      */
     protected $description = '';
     /**
-     * @var string Provides the version of the application API
+     * @var string Holds the version of the application API
      */
     protected $version = '';
     /**
-     * @var License License information for the exposed API
+     * @var License Holds license information for the exposed API
      */
     protected $license;
     /**
-     * @var Host Name or IP of host serving the API
+     * @var Host Holds name or IP of host serving the API
      */
     protected $host;
     /**
-     * @var int Port number of host serving the API
+     * @var int Holds port number of host serving the API
      */
     protected $port = 80;
     /**
-     * @var CustomDistinctCollection|Scheme[] The transfer protocol of the API: "http", "https", "ws", "wss"
+     * @var CustomDistinctCollection|Scheme[] Holds the transfer protocol of the API: "http", "https", "ws", "wss"
      */
     protected $schemes;
     /**
-     * @var UriTemplate A RFC 6570 URI Template that's to be used as the base of all the resources' URIs
+     * @var UriTemplate Holds a RFC 6570 URI Template that's to be used as the base of all the resources' URIs
      */
     protected $basePath;
     /**
-     * @var CustomDistinctCollection|Resource[] The API resources
+     * @var CustomDistinctCollection|Resource[] Holds the API resources
      */
     protected $resources;
     /**
-     * @var Contact Contact information for the exposed API
+     * @var Contact Holds contact information for the exposed API
      */
     protected $contact;
     /**
-     * @var CustomTypedCollection|Documentation[] Additional overall documentation for the API
+     * @var CustomTypedCollection|Documentation[] Hold additional overall documentation for the API
      */
     protected $documentation;
     /**
-     * @var CustomDistinctCollection|Entity[]
+     * @var CustomDistinctCollection|Entity[] Holds entities
      */
     protected $entities;
 
@@ -75,6 +75,7 @@ class Definition
      */
     final public function __construct()
     {
+        // @codingStandardsIgnoreStart
         $this->schemes = new class() extends CustomDistinctCollection
         {
             /**
@@ -146,6 +147,7 @@ class Definition
                 return 'getName';
             }
         };
+        // @codingStandardsIgnoreEnd
     }
 
     /**
@@ -401,22 +403,32 @@ class Definition
     }
 
     /**
-     * Adds type to collection
-     * @param Entity $type
+     * Adds entity to collection
+     * @param Entity $entity
      * @return bool
      */
-    public function addType(Entity $type) : bool
+    public function addEntity(Entity $entity) : bool
     {
-        return $this->entities->add($type);
+        return $this->entities->add($entity);
     }
 
     /**
-     * Remove type from collection
-     * @param Entity $type
+     * Remove entity from collection
+     * @param Entity $entity
      * @return bool
      */
-    public function removeType(Entity $type) : bool
+    public function removeEntity(Entity $entity) : bool
     {
-        return $this->entities->remove($type);
+        return $this->entities->remove($entity);
+    }
+
+    /**
+     * Checks if entity already exists
+     * @param Entity $entity
+     * @return bool
+     */
+    public function hasEntity(Entity $entity) : bool
+    {
+        return $this->entities->contains($entity);
     }
 }

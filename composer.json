@@ -6,16 +6,16 @@
     "php": "~7",
     "madkom/collection": "@dev",
     "madkom/regex": "^1.0.0",
-    "madkom/uri": "@dev"
+    "madkom/uri": "^1.0.0"
   },
   "require-dev": {
+    "squizlabs/php_codesniffer": "@dev",
     "henrikbjorn/phpspec-code-coverage": "@dev",
     "phpunit/phpcov": "*",
     "jakub-onderka/php-parallel-lint": "0.*",
     "jakub-onderka/php-console-highlighter": "0.*",
     "satooshi/php-coveralls": "dev-master",
     "clover/dump": "dev-master",
-    "squizlabs/php_codesniffer": "^2.3",
     "instaclick/object-calisthenics-sniffs": "@dev",
     "phpspec/phpspec": "@dev",
     "phpspec/prophecy": "dev-master",

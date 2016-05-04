@@ -30,7 +30,7 @@ class Header
      */
     protected $description;
     /**
-     * @var array Holds header examples
+     * @var array|string[] Holds header examples
      */
     protected $examples = [];
     /**

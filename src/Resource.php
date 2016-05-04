@@ -28,9 +28,15 @@ class Resource
      */
     protected $methods;
 
+    /**
+     * Resource constructor.
+     * @param UriTemplate $uriTemplate
+     * @param CustomDistinctCollection|Method[] $methods
+     */
     public function __construct(UriTemplate $uriTemplate, array $methods = [])
     {
         $this->uriTemplate = $uriTemplate;
+        // @codingStandardsIgnoreStart
         $this->methods = new class($methods) extends CustomDistinctCollection
         {
             /**
@@ -51,16 +57,24 @@ class Resource
                 return Method::class;
             }
         };
+        // @codingStandardsIgnoreEnd
     }
 
+    /**
+     * Retrieve Uri Template
+     * @return UriTemplate
+     */
     public function getUriTemplate() : UriTemplate
     {
         return $this->uriTemplate;
     }
 
+    /**
+     * Retrieve uri
+     * @return Uri
+     */
     public function getUri() : Uri
     {
-        $this->uriTemplate->expand();
-        
+        return $this->uriTemplate->expand();
     }
 }

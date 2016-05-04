@@ -4,12 +4,12 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ddc8f79b548972d2cbac95f483e0e390",
-    "content-hash": "e14319e5ed1fff1773cffdfe362da108",
+    "hash": "adb507e2d775f7aa5dd977674474a1ab",
+    "content-hash": "4cce5ef539febebbb1a81423d5910e60",
     "packages": [
         {
             "name": "madkom/collection",
-            "version": "dev-master",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/madkom/collection.git",
@@ -111,20 +111,21 @@
         },
         {
             "name": "madkom/uri",
-            "version": "dev-master",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/madkom/uri.git",
-                "reference": "c3bea6ec6668f06d077caedc537ffeaf338d2853"
+                "reference": "5f96acab6e156909eaa37baf4b08f97eb37cd3cd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/madkom/uri/zipball/c3bea6ec6668f06d077caedc537ffeaf338d2853",
-                "reference": "c3bea6ec6668f06d077caedc537ffeaf338d2853",
+                "url": "https://api.github.com/repos/madkom/uri/zipball/5f96acab6e156909eaa37baf4b08f97eb37cd3cd",
+                "reference": "5f96acab6e156909eaa37baf4b08f97eb37cd3cd",
                 "shasum": ""
             },
             "require": {
-                "madkom/collection": "@dev",
+                "madkom/collection": "^1.0.0",
+                "madkom/regex": "^1.0.0",
                 "php": "~7",
                 "rize/uri-template": "^0.3.0",
                 "true/punycode": "^2.0"
@@ -161,7 +162,7 @@
                 }
             ],
             "description": "Uniform Resource Identifier (URI) and Uniform Resource Locator (URL)",
-            "time": "2016-03-01 11:11:30"
+            "time": "2016-03-05 03:45:42"
         },
         {
             "name": "rize/uri-template",
@@ -406,16 +407,16 @@
         },
         {
             "name": "guzzlehttp/promises",
-            "version": "1.0.3",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/promises.git",
-                "reference": "b1e1c0d55f8083c71eda2c28c12a228d708294ea"
+                "reference": "bb9024c526b22f3fe6ae55a561fd70653d470aa8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/promises/zipball/b1e1c0d55f8083c71eda2c28c12a228d708294ea",
-                "reference": "b1e1c0d55f8083c71eda2c28c12a228d708294ea",
+                "url": "https://api.github.com/repos/guzzle/promises/zipball/bb9024c526b22f3fe6ae55a561fd70653d470aa8",
+                "reference": "bb9024c526b22f3fe6ae55a561fd70653d470aa8",
                 "shasum": ""
             },
             "require": {
@@ -453,7 +454,7 @@
             "keywords": [
                 "promise"
             ],
-            "time": "2015-10-15 22:28:00"
+            "time": "2016-03-08 01:15:46"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -988,16 +989,16 @@
         },
         {
             "name": "phpspec/phpspec",
-            "version": "2.4.1",
+            "version": "2.5.0-rc1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpspec/phpspec.git",
-                "reference": "5528ce1e93a1efa090c9404aba3395c329b4e6ed"
+                "reference": "fe0ee805446e5657e125d2b568b615e293a847d7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpspec/phpspec/zipball/5528ce1e93a1efa090c9404aba3395c329b4e6ed",
-                "reference": "5528ce1e93a1efa090c9404aba3395c329b4e6ed",
+                "url": "https://api.github.com/repos/phpspec/phpspec/zipball/fe0ee805446e5657e125d2b568b615e293a847d7",
+                "reference": "fe0ee805446e5657e125d2b568b615e293a847d7",
                 "shasum": ""
             },
             "require": {
@@ -1062,7 +1063,7 @@
                 "testing",
                 "tests"
             ],
-            "time": "2016-01-01 10:17:54"
+            "time": "2016-03-12 06:50:43"
         },
         {
             "name": "phpspec/prophecy",
@@ -1421,16 +1422,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "5.2.10",
+            "version": "5.2.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "37fa29b17b87a3e9f0a4d77c42f0aac5183b84d1"
+                "reference": "94b953a53d92cc6024bcbaab39a73370fd2f267c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/37fa29b17b87a3e9f0a4d77c42f0aac5183b84d1",
-                "reference": "37fa29b17b87a3e9f0a4d77c42f0aac5183b84d1",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/94b953a53d92cc6024bcbaab39a73370fd2f267c",
+                "reference": "94b953a53d92cc6024bcbaab39a73370fd2f267c",
                 "shasum": ""
             },
             "require": {
@@ -1491,7 +1492,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2016-03-03 08:52:58"
+            "time": "2016-03-14 06:24:28"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -2198,19 +2199,20 @@
         },
         {
             "name": "squizlabs/php_codesniffer",
-            "version": "2.5.1",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "6731851d6aaf1d0d6c58feff1065227b7fda3ba8"
+                "reference": "931223073e116381e7d2e701ce31dfd59a2ec226"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/6731851d6aaf1d0d6c58feff1065227b7fda3ba8",
-                "reference": "6731851d6aaf1d0d6c58feff1065227b7fda3ba8",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/931223073e116381e7d2e701ce31dfd59a2ec226",
+                "reference": "931223073e116381e7d2e701ce31dfd59a2ec226",
                 "shasum": ""
             },
             "require": {
+                "ext-simplexml": "*",
                 "ext-tokenizer": "*",
                 "ext-xmlwriter": "*",
                 "php": ">=5.1.2"
@@ -2271,7 +2273,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2016-01-19 23:39:10"
+            "time": "2016-03-14 04:28:42"
         },
         {
             "name": "symfony/config",
@@ -2546,7 +2548,7 @@
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.1.0",
+            "version": "v1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
@@ -2858,7 +2860,7 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "madkom/collection": 20,
-        "madkom/uri": 20,
+        "squizlabs/php_codesniffer": 20,
         "henrikbjorn/phpspec-code-coverage": 20,
         "satooshi/php-coveralls": 20,
         "clover/dump": 20,
